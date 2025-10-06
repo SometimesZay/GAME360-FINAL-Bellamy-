@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   lifetime: 3
+  enemiesValue: 50
 --- !u!1 &598770828805512908
 GameObject:
   m_ObjectHideFlags: 0

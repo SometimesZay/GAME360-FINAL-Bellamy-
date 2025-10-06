@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [Header("Bullet Settings")]
     public float speed = 10f;
     public float lifetime = 2f;
+    public int enemiesValue;
 
     private Rigidbody2D rb;
 
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
             if (enemy)
             {
                 enemy.TakeDamage(1);
-                GameManager.Instance.AddScore(100);
+                GameManager.Instance.AddScore(enemiesValue);
                 Destroy(gameObject); // Destroy bullet
             }
         }

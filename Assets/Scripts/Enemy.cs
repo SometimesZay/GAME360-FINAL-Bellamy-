@@ -32,8 +32,8 @@ public class Enemy : MonoBehaviour
     private void SetDownwardVelocity()
     {
         float s = baseSpeed;
-        if (GameManager.Instance && GameManager.Instance.score > 2000) s = speed2000;
-        else if (GameManager.Instance && GameManager.Instance.score > 1000) s = speed1000;
+        if (GameManager.Instance.score > 2000) s = speed2000;
+        else if (GameManager.Instance.score > 1000) s = speed1000;
 
         rb.linearVelocity = Vector2.down * s;
     }

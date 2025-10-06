@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireRate = 0.5f;
+    public float fireRate = 1f;
     private float nextFireTime = 0f;
 
     [Header("Audio")]
@@ -62,10 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireBullet()
     {
-        if (GameManager.Instance.score > 499 && GameManager.Instance.score < 1000)
-            fireRate = 0.3f;
-        if (GameManager.Instance.score > 1000)
-            fireRate = 0.1f;
+        if (GameManager.Instance.score > 5000) fireRate = .1f;
+        else if (GameManager.Instance.score > 2000) fireRate = .2f;
+        else if (GameManager.Instance.score > 1000) fireRate = .3f;
+        else if (GameManager.Instance.score > 500) fireRate = .5f;
+        else if (GameManager.Instance.score > 250) fireRate = .8f;
 
         if (bulletPrefab && firePoint)
         {
