@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText) scoreText.text = "Score: " + score;
         if (livesText) livesText.text = "Lives: " + lives;
-        if (enemiesKilledText) enemiesKilledText.text = "Enemies: " + enemiesKilled;
+        if (enemiesKilledText) enemiesKilledText.text = "EnemiesKilled: " + enemiesKilled;
     }
 
     private void GameOver()
