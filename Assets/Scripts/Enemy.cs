@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public int health = 1;
-    public float moveSpeed = 2f;
+    public float baseSpeed = 2f;          // starting fall speed
+    public float speed1000 = 3f;          // speed after score > 1000
+    public float speed2000 = 4f;
 
-    [Header("AI")]
-    public float detectionRange = 5f;
+    //[Header("AI")]
+    //public float detectionRange = 5f;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -23,32 +26,42 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        ChasePlayer();
+        SetDownwardVelocity();
     }
 
+    private void SetDownwardVelocity()
+    {
+        float s = baseSpeed;
+        if (GameManager.Instance && GameManager.Instance.score > 2000) s = speed2000;
+        else if (GameManager.Instance && GameManager.Instance.score > 1000) s = speed1000;
+
+        rb.linearVelocity = Vector2.down * s;
+    }
+
+    // Code Rewrite
+    // Enemys will now path downwards
+    // Goal: Arcade raining enemies feeling
+    /*
     private void ChasePlayer()
     {
         if (player)
         {
-            if (GameManager.Instance.score > 1000)
-                moveSpeed = 3f;
-            if (GameManager.Instance.score > 2000)
-                moveSpeed = 4f;
+
             float distance = Vector2.Distance(transform.position, player.position);
 
             if (distance <= detectionRange)
             {
                 Vector2 direction = (player.position - transform.position).normalized;
-               // rb.linearVelocity = direction * moveSpeed;
+               rb.linearVelocity = direction * moveSpeed;
                rb.AddForce(direction * moveSpeed);
             }
             else
             {
                 rb.linearVelocity = Vector2.zero;
             }
+            
         }
-    }
-
+    }*/
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -67,6 +80,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject); // the enemy gets destroyed
     }
 
+    /*
     private void OnDrawGizmosSelected()
     {
         // Custom 2D circle for older Unity versions
@@ -88,4 +102,5 @@ public class Enemy : MonoBehaviour
             lastPos = newPos;
         }
     }
+    */
 }

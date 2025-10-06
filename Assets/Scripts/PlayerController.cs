@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        //float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(horizontal, vertical * 0).normalized; // Disable vertical movement for side-scrolling
+        Vector2 movement = new Vector2(horizontal, 0).normalized; // Disable vertical movement for side-scrolling
         rb.linearVelocity = movement * moveSpeed;
     }
 

@@ -4,14 +4,15 @@ public class Bullet : MonoBehaviour
 {
     [Header("Bullet Settings")]
     public float speed = 10f;
-    public float lifetime = 3f;
+    public float lifetime = 2f;
 
     private Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = transform.up * speed;
+        rb.linearVelocity = Vector2.up * speed;   // world space up
+
 
         // Destroy bullet after lifetime
         Destroy(gameObject, lifetime);
@@ -34,7 +35,7 @@ public class Bullet : MonoBehaviour
         // Destroy bullet if it hits walls or boundaries
         if (other.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            Debug.Log("Wall Hit");
         }
     }
 }
