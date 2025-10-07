@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public int enemiesKilled = 0;
 
+    public int enemiesValue;
+
     [Header("UI References")]
     public Text scoreText;
     public Text livesText;
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
-        AddScore(100); // 100 points per enemy
+        AddScore(enemiesValue); // Award points for kill
         Debug.Log($"Enemy killed! Total enemies defeated: {enemiesKilled}");
     }
 

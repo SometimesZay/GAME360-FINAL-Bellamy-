@@ -1846,6 +1846,7 @@ MonoBehaviour:
   score: 0
   lives: 3
   enemiesKilled: 0
+  enemiesValue: 25
   scoreText: {fileID: 409913408}
   livesText: {fileID: 1328753547}
   enemiesKilledText: {fileID: 1320748860}
@@ -4046,29 +4047,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: moveSpeed
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: ShootSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 73b6d314cf3b69746816d3be3122b761, type: 3}
-    - target: {fileID: 2113636560838310359, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 391104257481787153, guid: 3456f03b27c08bf408eecca441db900d, type: 3}
     - target: {fileID: 4126854077953803790, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479030057492916331, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4479030057492916331, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4479030057492916331, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4108,38 +4089,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4479030057492916331, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5585707198117153107, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_Volume
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 5585707198117153107, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 8300000, guid: 73b6d314cf3b69746816d3be3122b761, type: 3}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707373514080202060, guid: a513c012c289ab54882a84faf7c7d496, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

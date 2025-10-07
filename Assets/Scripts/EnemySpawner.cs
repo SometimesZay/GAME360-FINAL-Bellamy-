@@ -4,7 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawning")]
     public GameObject enemyPrefab;
-    public float spawnRate = 2f;
+    public float spawnRate = 1.7f;
     public Transform[] spawnPoints;
 
     private float nextSpawnTime = 0f;
@@ -16,12 +16,14 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
             nextSpawnTime = Time.time + spawnRate;
         }
-        if (GameManager.Instance.score > 400 && GameManager.Instance.score < 900)
+        if (GameManager.Instance.score > 400 && GameManager.Instance.score < 1400)
             spawnRate = 1.5f;
-        if (GameManager.Instance.score > 900 && GameManager.Instance.score < 1400)
+        if (GameManager.Instance.score > 1400 && GameManager.Instance.score < 2500)
             spawnRate = 1.0f;
-        if (GameManager.Instance.score > 1400 && GameManager.Instance.score < 2000)
+        if (GameManager.Instance.score > 2500 && GameManager.Instance.score < 3000)
             spawnRate = 0.5f;
+        if (GameManager.Instance.score > 3000)
+            spawnRate = 0.1f;
     }
 
     private void SpawnEnemy()

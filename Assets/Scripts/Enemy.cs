@@ -5,10 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public int health = 1;
-    public float baseSpeed = 2f;          // starting fall speed
-    public float speed1000 = 3f;          // speed after score > 1000
-    public float speed2000 = 4f;
-
+    float speed = 2f;
     //[Header("AI")]
     //public float detectionRange = 5f;
 
@@ -27,15 +24,25 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         SetDownwardVelocity();
+        ScaleHealth();
+    }
+
+    private void ScaleHealth()
+    {
+        if (GameManager.Instance.score > 100000) health = 5;
+        else if (GameManager.Instance.score > 50000) health = 4;
+        else if (GameManager.Instance.score > 25000) health = 3;
+        else if (GameManager.Instance.score > 5000) health = 2;
     }
 
     private void SetDownwardVelocity()
     {
-        float s = baseSpeed;
-        if (GameManager.Instance.score > 2000) s = speed2000;
-        else if (GameManager.Instance.score > 1000) s = speed1000;
+        if (GameManager.Instance.score > 4000) speed = 6f;
+        else if (GameManager.Instance.score > 3000) speed = 5f;
+        else if (GameManager.Instance.score > 2000) speed = 4f;
+        else if (GameManager.Instance.score > 1000) speed = 3f;
 
-        rb.linearVelocity = Vector2.down * s;
+        rb.linearVelocity = Vector2.down * speed;
     }
 
     // Code Rewrite

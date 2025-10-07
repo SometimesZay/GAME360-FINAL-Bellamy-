@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Shooting")]
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireRate = 1f;
+    public float fireRate = 1.5f;
     private float nextFireTime = 0f;
 
     [Header("Audio")]
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleShooting()
     {
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
+        if (Input.GetButton("Fire1") && Time.time >= nextFireTime || Input.GetKeyDown(KeyCode.Space) && Time.time >= nextFireTime)
         {
             FireBullet();
             nextFireTime = Time.time + fireRate;
@@ -63,11 +63,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireBullet()
     {
-        if (GameManager.Instance.score > 5000) fireRate = .1f;
-        else if (GameManager.Instance.score > 2000) fireRate = .2f;
-        else if (GameManager.Instance.score > 1000) fireRate = .3f;
-        else if (GameManager.Instance.score > 500) fireRate = .5f;
-        else if (GameManager.Instance.score > 250) fireRate = .8f;
+        if (GameManager.Instance.score > 10000) fireRate = .1f;
+        else if (GameManager.Instance.score > 3000) fireRate = .2f;
+        else if (GameManager.Instance.score > 2000) fireRate = .5f;
+        else if (GameManager.Instance.score > 1000) fireRate = .8f;
+        else if (GameManager.Instance.score > 500) fireRate = 1f;
 
         if (bulletPrefab && firePoint)
         {
