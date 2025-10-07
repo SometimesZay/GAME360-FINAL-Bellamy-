@@ -2,39 +2,69 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [Header("Bullet Settings")]
-    public float speed = 10f;
+    [Header("Flight")]
+    public float speed = 12f;
     public float lifetime = 2f;
 
-    private Rigidbody2D rb;
+    [Header("Hit")]
+    public float hitDuration = .583f;
 
-    private void Start()
+    Rigidbody2D rb;
+    Collider2D col;
+    Animator anim;
+    bool hit;
+
+    void Awake()
+{
+    rb   = GetComponent<Rigidbody2D>();
+    col  = GetComponent<Collider2D>();
+    anim = GetComponentInChildren<Animator>();
+
+    rb.bodyType = RigidbodyType2D.Kinematic; 
+    rb.gravityScale = 0f; 
+}
+
+    void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = Vector2.up * speed;   // world space up
-
-
-        // Destroy bullet after lifetime
-        Destroy(gameObject, lifetime);
+        // flight start
+        rb.linearVelocity = transform.up * speed;
+        Invoke(nameof(SelfDestruct), lifetime);    // cancelable lifetime
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void SelfDestruct() => Destroy(gameObject);
+
+    void OnTriggerEnter2D(Collider2D other)
     {
+        if (hit) return;
+
         if (other.CompareTag("Enemy"))
         {
-            // Bullet hit enemy
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy)
             {
-                enemy.TakeDamage(1);// Removed add score here because enemies don't die in one hit always
-                Destroy(gameObject); // Destroy bullet
+                enemy.TakeDamage(1);
             }
+            Impact();
         }
-
-        // Destroy bullet if it hits walls or boundaries
-        if (other.CompareTag("Wall"))
+        else if (other.CompareTag("Boundary")) 
         {
-            Debug.Log("Wall Hit");
+            Impact();
         }
+    }
+
+    void Impact()
+    {
+        hit = true;
+
+        // stop moving & stop colliding
+        rb.linearVelocity = Vector2.zero;
+        if (col) col.enabled = false;
+
+        // play hit animation
+        if (anim) anim.SetTrigger("HITENEMY");
+
+        // ensure lifetime doesn’t cut the animation
+        CancelInvoke(nameof(SelfDestruct));
+        Destroy(gameObject, hitDuration);
     }
 }

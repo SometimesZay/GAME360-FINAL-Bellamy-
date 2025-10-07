@@ -9,6 +9,7 @@ TagManager:
   - Collectible
   - Bullet
   - BulletCatcher
+  - Boundary
   layers:
   - Default
   - TransparentFX

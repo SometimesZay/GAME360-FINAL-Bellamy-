@@ -17,22 +17,13 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Find player
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj) player = playerObj.transform;
+        //GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        //if (playerObj) player = playerObj.transform;
     }
 
     private void Update()
     {
         SetDownwardVelocity();
-        ScaleHealth();
-    }
-
-    private void ScaleHealth()
-    {
-        if (GameManager.Instance.score > 100000) health = 5;
-        else if (GameManager.Instance.score > 50000) health = 4;
-        else if (GameManager.Instance.score > 25000) health = 3;
-        else if (GameManager.Instance.score > 5000) health = 2;
     }
 
     private void SetDownwardVelocity()
@@ -85,6 +76,13 @@ public class Enemy : MonoBehaviour
         // Any enemy can easily notify the GameManager
         GameManager.Instance.EnemyKilled(); //update the score of the player
         Destroy(gameObject); // the enemy gets destroyed
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Boundary"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     /*

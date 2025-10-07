@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro; //Namesapce for textmeshpro
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,13 +14,12 @@ public class GameManager : MonoBehaviour
     public int score = 0;//score is calculated
     public int lives = 3;
     public int enemiesKilled = 0;
-
     public int enemiesValue;
 
     [Header("UI References")]
-    public Text scoreText;
-    public Text livesText;
-    public Text enemiesKilledText;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
+    public TextMeshProUGUI enemiesKilledText;
     public GameObject gameOverPanel;
     //public TMP_Text scoreText;
 
@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour
     private void RefreshUIReferences()
     {
         
-       scoreText = GameObject.Find("Score")?.GetComponent<Text>();
-       livesText = GameObject.Find("Lives")?.GetComponent<Text>();
-       enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<Text>();
+       scoreText = GameObject.Find("Score")?.GetComponent<TextMeshProUGUI>();
+       livesText = GameObject.Find("Lives")?.GetComponent<TextMeshProUGUI>();
+       enemiesKilledText = GameObject.Find("EnemiesKilled")?.GetComponent<TextMeshProUGUI>();
        gameOverPanel = GameObject.Find("GameEndPanel");
         if (gameOverPanel != null)
         {

@@ -179,5 +179,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  moveSpeed: 20
-  detectionRange: 15
