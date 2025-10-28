@@ -1,4 +1,4 @@
-# Task 2: [Pattern Name] Implementation
+# Task 2: Singleton Implementation
 
 ## Student Info
 - Name: [Isaiah]
