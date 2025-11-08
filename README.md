@@ -1,4 +1,4 @@
-# Task 2: Singleton Implementation
+# Task 2: GameManager Implementation
 
 ## Student Info
 - Name: [Isaiah]
@@ -27,5 +27,14 @@ GameManager controls restarting and quitting the Game, destroying all the game o
 - Total Commits: [11]
 - Development Time: [6]
 
+# For Final Project
+
+## Game Description
+Star Fighter is a vertical-scrolling arcade shooter where players pilot a customizable spacecraft through waves of enemies. Players destroy hostile ships, dodge bullets, and collect power-ups that enhance weapons or shields. Each stage increases in speed and density, rewarding accuracy, survival, and upgrade strategy across progressively challenging galactic battlefields.
+## Current Status
+- In-progress
+## Development Timeline
+- Add Event Manager & State Machines because I'm going back to my task 2 project for the final
+- 
 
 
