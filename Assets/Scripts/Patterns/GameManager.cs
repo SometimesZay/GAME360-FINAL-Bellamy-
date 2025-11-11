@@ -7,21 +7,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [Header("Game Settings")]
-    public Vector3 spawnPoint = new Vector3(-8f, 0f, 0f);
+    public Vector3 playerSpawnPoint = new Vector3(-8f, 0f, 0f);
     public float levelTimeLimit = 120f;
 
     private int score = 0;
     private float timeRemaining;
-    private float enemiesKilled = 0;
     private bool isGameActive = true;
     private bool isPaused = false;
     
-    [Header("UI References")]
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI livesText;
-    public TextMeshProUGUI enemiesKilledText;
-    public GameObject gameOverPanel;
-
     void Awake()
     {
         // Simple singleton - one per scene

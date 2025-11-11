@@ -1937,7 +1937,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 933153937}
-  - component: {fileID: 933153938}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1960,26 +1959,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &933153938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933153935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f3b3621ec420440a54614334cd39f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  lives: 3
-  enemiesKilled: 0
-  enemiesValue: 25
-  scoreText: {fileID: 1751694802}
-  livesText: {fileID: 126529841}
-  enemiesKilledText: {fileID: 1897145900}
-  gameOverPanel: {fileID: 1077280299}
 --- !u!1 &1013096388
 GameObject:
   m_ObjectHideFlags: 0

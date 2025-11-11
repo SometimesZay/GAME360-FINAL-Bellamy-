@@ -6,10 +6,14 @@ public class Enemy : MonoBehaviour
     [Header("Enemy Stats")]
     public int health = 1;
     float speed = 2f;
+
+    [Header("Experience Points")]
+    public int xpSpawnAmount = 1; // How many xp prefabs spawns from this enemy
+    public GameObject xpPrefab;
     //[Header("AI")]
     //public float detectionRange = 5f;
 
-    private Transform player;
+    //private Transform player;
     private Rigidbody2D rb;
 
     private void Start()
@@ -45,6 +49,11 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject); // the enemy gets destroyed
+        // Spawn XP pickups
+        for (int i = 0; i < xpSpawnAmount; i++)
+        {
+            Instantiate(xpPrefab, transform.position, Quaternion.identity);
+        }
         EventManager.TriggerEvent("OnEnemyKilled"); //update the score of the player
     }
     private void OnTriggerEnter2D(Collider2D other)

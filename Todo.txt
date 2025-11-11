@@ -18,3 +18,17 @@ Script needs to be redone as well.
 
 6. MovingState.cs need to readdress moving since this is a locked horizontal movement game. 
 
+7. Pickup list
+    - Full heal
+    - Freeze time
+    - Speed up
+    - Dmg Multiplier
+    -
+8. Weapon list
+    - Pierce Weapon of some kind, maybe a beam instead of a blast
+    - Ricochet Weapon of some kind, 
+    - Blaster 
+    - Homing Rockets
+    - BIG Rockets
+9 Score not calculating. Lives not calculating. Timer runs out game stops nothing else, check events 
+

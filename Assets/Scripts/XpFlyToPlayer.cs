@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickupFlyToPlayer : MonoBehaviour
+public class XpFlyToPlayer : MonoBehaviour
 {
     private Transform target;
     private Rigidbody2D rb;
