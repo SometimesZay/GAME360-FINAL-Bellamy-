@@ -14,10 +14,7 @@ public class Collectible : MonoBehaviour
     }
     private void SetDownwardVelocity()
     {
-        if (GameManager.Instance.score > 4000) speed = 6f;
-        else if (GameManager.Instance.score > 3000) speed = 5f;
-        else if (GameManager.Instance.score > 2000) speed = 4f;
-        else if (GameManager.Instance.score > 1000) speed = 3f;
+        // Adjust speed based on GameManager timeElapsed
 
         rb.linearVelocity = Vector2.down * speed;
     }
@@ -33,7 +30,7 @@ public class Collectible : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Easy access to GameManager through Singleton!
-            GameManager.Instance.CollectiblePickedUp(value);
+            // Add System to store pickups
             Destroy(gameObject);
         }
         if (other.CompareTag("Boundary"))

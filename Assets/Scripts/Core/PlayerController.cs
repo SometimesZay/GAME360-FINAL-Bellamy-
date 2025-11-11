@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip CoinSound;
     private AudioSource audioSource;//Unity componenet
 
+    [Header("Components")]
+    internal PlayerState currentState;
+    internal Animator animator;
     private Rigidbody2D rb;
 
     private void Start()
@@ -63,11 +66,11 @@ public class PlayerController : MonoBehaviour
 
     private void FireBullet()
     {
-        if (GameManager.Instance.score > 10000) fireRate = .1f;
-        else if (GameManager.Instance.score > 3000) fireRate = .2f;
-        else if (GameManager.Instance.score > 2000) fireRate = .5f;
-        else if (GameManager.Instance.score > 1000) fireRate = .8f;
-        else if (GameManager.Instance.score > 500) fireRate = 1f;
+        if (GameManager.Instance.GetScore() > 10000) fireRate = .1f;
+        else if (GameManager.Instance.GetScore() > 3000) fireRate = .2f;
+        else if (GameManager.Instance.GetScore() > 2000) fireRate = .5f;
+        else if (GameManager.Instance.GetScore() > 1000) fireRate = .8f;
+        else if (GameManager.Instance.GetScore() > 500) fireRate = 1f;
 
         if (bulletPrefab && firePoint)
         {
@@ -76,15 +79,22 @@ public class PlayerController : MonoBehaviour
 
         audioSource.PlayOneShot(ShootSound);
         // Play shoot sound effect
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            // Player hit by enemy - lose a life
-            GameManager.Instance.LoseLife();
+            // Player hit by enemy - take damage
+            PlayerHealth health = GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.TakeDamage(20f); // Adjust damage value as desired
+            }
+
+            // destroy enemy after collision
+            Destroy(other.gameObject);
         }
 
         if (other.CompareTag("Collectible"))
@@ -93,12 +103,24 @@ public class PlayerController : MonoBehaviour
             Collectible collectible = other.GetComponent<Collectible>();
             if (collectible)
             {
-                GameManager.Instance.CollectiblePickedUp(100);
+                GameManager.Instance.AddScore(100);
                 audioSource.PlayOneShot(CoinSound);
                 Destroy(other.gameObject);
-
+                EventManager.TriggerEvent("OnPickupCollected");
 
             }
         }
+    }
+    public void ChangeState(PlayerState newState)
+    {
+        if (currentState != null)
+        {
+            currentState.ExitState(this);
+        }
+
+        currentState = newState;
+        currentState.EnterState(this);
+
+        EventManager.TriggerEvent("OnPlayerStateChanged", currentState.GetStateName());
     }
 }

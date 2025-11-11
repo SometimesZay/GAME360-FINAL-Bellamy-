@@ -28,38 +28,10 @@ public class Enemy : MonoBehaviour
 
     private void SetDownwardVelocity()
     {
-        if (GameManager.Instance.score > 4000) speed = 6f;
-        else if (GameManager.Instance.score > 3000) speed = 5f;
-        else if (GameManager.Instance.score > 2000) speed = 4f;
-        else if (GameManager.Instance.score > 1000) speed = 3f;
+        // Adjust speed based on GameManager timeElapsed
 
         rb.linearVelocity = Vector2.down * speed;
     }
-
-    // Code Rewrite
-    // Enemys will now path downwards
-    // Goal: Arcade raining enemies feeling
-    /*
-    private void ChasePlayer()
-    {
-        if (player)
-        {
-
-            float distance = Vector2.Distance(transform.position, player.position);
-
-            if (distance <= detectionRange)
-            {
-                Vector2 direction = (player.position - transform.position).normalized;
-               rb.linearVelocity = direction * moveSpeed;
-               rb.AddForce(direction * moveSpeed);
-            }
-            else
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
-            
-        }
-    }*/
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -72,10 +44,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        // This is where Singleton shines!
-        // Any enemy can easily notify the GameManager
-        GameManager.Instance.EnemyKilled(); //update the score of the player
         Destroy(gameObject); // the enemy gets destroyed
+        EventManager.TriggerEvent("OnEnemyKilled"); //update the score of the player
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -1,0 +1,20 @@
+These are in no particular order
+
+
+1. Collectible.cs - Add System to store pickups. Also they had downward velocity
+scaling with score, should change that at some point. Also unsure on rotation, but
+its fine for now. 
+
+2. EnemySpawner.cs - Also based on score, I'd rather it be based on time, so disabling
+for now. Should also subscribe to OnGameOver for flow control. Lives is also currently
+in PlayerHealth.cs, this should be fixable with Events. I honestly think the entire spawner 
+Script needs to be redone as well.
+
+3. Enemy.cs - I think there will be multiple enemy types, and also speed based on time, health based on time
+
+4. CollectibleSpawner.cs needs overhaul when pickup system is created
+
+5. PlayerController.cs complete overhaul needed for when new shooting system is implemented. Temp fix with GetScore
+
+6. MovingState.cs need to readdress moving since this is a locked horizontal movement game. 
+

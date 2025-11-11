@@ -8,34 +8,41 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
 
     private float nextSpawnTime = 0f;
+    private bool isGameOver = false;
+
+    private void Awake()
+    {
+        EventManager.Subscribe("OnPlayerDied", OnGameOver);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe("OnPlayerDied", OnGameOver);
+    }
 
     private void Update()
     {
+        if (isGameOver) return; // Stop spawning if game is over
+
+        // Adjust spawn rate based on GameManager timeElapsed
+        
         if (Time.time >= nextSpawnTime)
         {
             SpawnEnemy();
             nextSpawnTime = Time.time + spawnRate;
         }
-        if (GameManager.Instance.score > 400 && GameManager.Instance.score < 1400)
-            spawnRate = 1.5f;
-        if (GameManager.Instance.score > 1400 && GameManager.Instance.score < 2500)
-            spawnRate = 1.0f;
-        if (GameManager.Instance.score > 2500 && GameManager.Instance.score < 3000)
-            spawnRate = 0.5f;
-        if (GameManager.Instance.score > 3000)
-            spawnRate = 0.1f;
     }
 
     private void SpawnEnemy()
     {
-        if (enemyPrefab && spawnPoints.Length > 0)
-        {
-            // Check if game is still running through Singleton
-            if (GameManager.Instance.lives > 0)
-            {
-                int randomIndex = Random.Range(0, spawnPoints.Length);
-                Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
-            }
-        }
+        if (enemyPrefab == null || spawnPoints.Length == 0) return;
+
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Instantiate(enemyPrefab, spawnPoints[randomIndex].position, Quaternion.identity);
+    }
+
+    private void OnGameOver(object _ = null)
+    {
+        isGameOver = true;
     }
 }
