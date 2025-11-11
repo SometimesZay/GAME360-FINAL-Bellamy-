@@ -10,17 +10,23 @@ public class XpFlyToPlayer : MonoBehaviour
     public float delayBeforeAttract = 0.5f;
     public float attractionSpeed = 5f;
     public float pickupDistance = 0.3f;
+    public Transform player;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
+        SetTarget(player);
         Invoke(nameof(StartAttract), delayBeforeAttract);
     }
 
     void StartAttract()
     {
         attracted = true;
-        if (rb != null) rb.gravityScale = 0; // optional: stop gravity effect
+        if (rb != null) rb.gravityScale = 0; // stop gravity effect
     }
 
     void Update()
